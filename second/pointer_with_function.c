@@ -8,7 +8,7 @@ void test_function(int **number_double_pointer)
 int main (void)
 {
 	int number = 3;
-	int *number_pointer;
+	int *number_pointer = &number;
 
 	test_function(&number_pointer);
 	printf("number = %d\n", number);

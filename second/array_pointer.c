@@ -17,7 +17,9 @@ void alloc_variant_array(int *array[MAX])
 	for (i = 0; i < MAX; i++)
 	{
 		random_number = custom_random(MIN, MAX);
-		array[i] = (int *)malloc(sizeof(int) * random_number);
+		// (int *): 서로 일치하지 않는 타입을 맞춰주는 타입 캐스팅
+		array[i] = malloc(sizeof(int) * random_number);
+		//array[i] = (int *)malloc(sizeof(int) * random_number);
 
 		for (j = 0; j < random_number; j++)
 		{

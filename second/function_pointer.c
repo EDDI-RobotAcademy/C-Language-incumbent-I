@@ -57,7 +57,7 @@ void select_global_function_pointer (int selected_number)
 	}
 }
 
-void call_global_function_pointer (int selected_number)
+void call_global_function_pointer (void)
 {
 	global_function_pointer_handler();
 }
@@ -70,7 +70,7 @@ int main (void)
 
 	random_number = custom_random(BLDC_MOTOR, RADAR);
 	select_global_function_pointer(random_number);
-	call_global_function_pointer(random_number);
+	call_global_function_pointer();
 
 	return 0;
 }
