@@ -23,16 +23,20 @@ member;
 bool init_member(member *account, char *name, int age)
 {
 	// 사실은 malloc이 fail 발생할 수도 있음
+	// strlen은 문자열의 길이를 구하는 라이브러리
 	int name_length = strlen(name);
 	char *tmp = (char *)malloc(sizeof(char) * name_length + 1);
 
 	if (!tmp) { return MEMBER_ALLOC_FAIL; }
 
 	account->name = tmp;
+	// strncpy는 문자열을 복사합니다.
+	// strncpy(복사될 위치, 복사할 대상, 복사할 길이);
 	strncpy(account->name, name, name_length);
 	account->age = age;
 
-	return MEMBER_ALLOC_SUCCESS;
+	//return MEMBER_ALLOC_SUCCESS;
+	return MEMBER_ALLOC_FAIL;
 }
 
 void print_member(member account)
@@ -55,11 +59,14 @@ int main (void)
 	struct _member account;
 	// tip: typedef를 이용했으므로 아래와 같이 사용해도 무방하다.
 	// struct _member를 member로 축약해서 사용하겠음을 의미함.
+	// int arr[3] = { 0 };
+	// 구조체 메모리를 할당하고 전부 NULL 처리
 	member my_account = {};
 
 	if (init_member(&my_account, "gogo", 19) == MEMBER_ALLOC_FAIL)
 	{
 		printf("member 구조체 할당 실패!\n");
+		// 프로그램을 종료하는 라이브러리입니다.
 		exit(-1);
 	}
 
